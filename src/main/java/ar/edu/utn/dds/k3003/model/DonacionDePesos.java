@@ -7,7 +7,7 @@ public class DonacionDePesos extends Contribucion{
 
   public DonacionDePesos(LocalDateTime fecha, Double cantidad) {
     super(fecha);
-    this.descripcion = "Donacion de pesos";
+    this.description = "Donacion de pesos";
     this.cantidad = cantidad;
   }
   private static Double pesoPuntaje;

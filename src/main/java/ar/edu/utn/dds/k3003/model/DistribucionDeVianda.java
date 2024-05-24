@@ -6,13 +6,13 @@ public class DistribucionDeVianda extends Contribucion{
 
   public DistribucionDeVianda(LocalDateTime fecha) {
     super(fecha);
-    this.descripcion = "Distribucion de viandas";
+    this.description = "Distribucion de viandas";
   }
 
   public DistribucionDeVianda(Long id, LocalDateTime fecha) {
     super(fecha);
     this.id = id;
-    this.descripcion = "Distribucion de viandas";
+    this.description = "Distribucion de viandas";
   }
 
   private static Double pesoPuntaje;

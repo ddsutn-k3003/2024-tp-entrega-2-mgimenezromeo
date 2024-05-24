@@ -1,30 +1,43 @@
 package ar.edu.utn.dds.k3003.model;
 
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 
 public class ActivacionDeHeladera extends Contribucion{
+
+  @Setter
   private static Double pesoPuntaje;
 
-  public static void setPesoPuntaje(Double nuevoPuntaje) {
-    pesoPuntaje = nuevoPuntaje;
+  private LocalDateTime ActivationDate;
+
+  //Usamos el atributo max del packaga y creamos un segundo constructor
+  private LocalDateTime DeactivationDate = LocalDateTime.MAX;
+
+
+   public ActivacionDeHeladera(LocalDateTime fecha, LocalDateTime ActivationDate, LocalDateTime DeactivationDate) {
+    super(fecha);
+    this.description = "Heladera Activada";
+    this.ActivationDate = ActivationDate;
+    this.DeactivationDate = DeactivationDate;
   }
 
-  public ActivacionDeHeladera(LocalDateTime fecha, LocalDateTime fechaActivacion, LocalDateTime fechaDesactivacion) {
+  public ActivacionDeHeladera(LocalDateTime fecha, LocalDateTime ActivationDate) {
     super(fecha);
-    this.descripcion = "Activacion de heladera";
-    this.fechaActivacion = fechaActivacion;
-    this.fechaDesactivacion = fechaDesactivacion;
+    this.description = "Heladera Activada";
+    this.ActivationDate = ActivationDate;
   }
-  private LocalDateTime fechaActivacion;
-  private LocalDateTime fechaDesactivacion;
+
 
   @Override
   public Double getPuntaje() {
-    //Puntaje = pesoPuntaje * (cantidad de tiempo que estuvo activa expresado en meses)
-    if(fechaDesactivacion != null){
-      return pesoPuntaje * (fechaDesactivacion.getMonthValue() - fechaActivacion.getMonthValue()) + 12*(fechaDesactivacion.getYear() - fechaActivacion.getYear());
+
+    //Puntaje = pesoPuntaje * meses activo. Si no hay fecha de finalizacion se cuenta el dia de hoy.
+    if(DeactivationDate == LocalDateTime.MAX){
+        return pesoPuntaje * (LocalDateTime.now().getMonthValue() - ActivationDate.getMonthValue()) + 12*(LocalDateTime.now().getYear() - ActivationDate.getYear());
     }else{
-      return pesoPuntaje * (LocalDateTime.now().getMonthValue() - fechaActivacion.getMonthValue()) + 12*(LocalDateTime.now().getYear() - fechaActivacion.getYear());
+        return pesoPuntaje * (DeactivationDate.getMonthValue() - ActivationDate.getMonthValue()) + 12*(DeactivationDate.getYear() - ActivationDate.getYear());
     }
+
   }
 }

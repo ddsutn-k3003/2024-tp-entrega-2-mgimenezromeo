@@ -1,25 +1,24 @@
 package ar.edu.utn.dds.k3003.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 
 public abstract class Contribucion {
 
+  @Getter @Setter
   protected Long id;
-  protected String descripcion;
+  @Getter @Setter
+  protected String description;
 
-  private LocalDateTime fecha;
+  @Getter @Setter
+  private LocalDateTime contibutionDate;
 
   public Contribucion(LocalDateTime fecha) {
-    this.fecha = fecha;
+    this.contibutionDate = fecha;
   }
 
   public abstract Double getPuntaje();
 
-  public LocalDateTime getFecha() {
-    return fecha;
-  }
-
-  public String getDescripcion() {
-    return descripcion;
-  }
 }

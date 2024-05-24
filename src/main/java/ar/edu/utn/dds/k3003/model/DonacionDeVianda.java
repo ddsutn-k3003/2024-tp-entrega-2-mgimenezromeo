@@ -15,12 +15,12 @@ public class DonacionDeVianda extends Contribucion{
   }
   public DonacionDeVianda(LocalDateTime fecha) {
     super(fecha);
-    this.descripcion = "Donacion de vianda";
+    this.description = "Donacion de vianda";
   }
 
   public DonacionDeVianda(Long id, LocalDateTime fecha) {
     super(fecha);
     this.id = id;
-    this.descripcion = "Donacion de vianda";
+    this.description = "Donacion de vianda";
   }
 }
